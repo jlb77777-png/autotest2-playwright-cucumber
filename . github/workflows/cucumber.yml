@@ -1,0 +1,36 @@
+name: CI - Cucumber Playwright Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar el repositorio
+      uses: actions/checkout@v4
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Instalar dependencias del proyecto
+      run: npm ci
+
+    - name: Instalar navegadores de Playwright con dependencias del sistema
+      run: npx playwright install --with-deps
+
+    - name: Ejecutar pruebas de Cucumber
+      run: npm test
+
+    - name: Guardar reporte HTML como artefacto
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: cucumber-html-report
+        path: cucumber-report.html
