@@ -17,12 +17,12 @@ jobs:
     - name: Configurar Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 20
 
     - name: Instalar dependencias del proyecto
-      run: npm ci
+      run: npm install
 
-    - name: Instalar navegadores de Playwright con dependencias del sistema
+    - name: Instalar navegadores de Playwright con dependencias de Linux
       run: npx playwright install --with-deps
 
     - name: Ejecutar pruebas de Cucumber
