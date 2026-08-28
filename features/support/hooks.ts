@@ -8,7 +8,7 @@ export let page: Page;
 // Se ejecuta UNA SOLA VEZ antes de que inicien todas las pruebas
 BeforeAll(async () => {
   browser = await chromium.launch({ 
-    headless: false, // Cámbialo a true si quieres ejecuciones silenciosas (sin interfaz)
+    headless: true, // Cámbialo a true si quieres ejecuciones silenciosas (sin interfaz)
     slowMo: 1000      // Ralentiza la ejecución 1s por acción para poder observar los clics
   });
 });
