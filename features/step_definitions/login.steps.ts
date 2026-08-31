@@ -11,7 +11,7 @@ Given('que el usuario navega a la página de inicio de sesión', async () => {
 });
 
 When('ingresa el usuario {string} y la contraseña {string}', async (username: string, password: string) => {
-  await loginPage.ingresarCredenciales(username,password)
+  await loginPage.ingresarCredenciales(username,password);
   
 });
 
@@ -22,3 +22,11 @@ When('hace clic en el botón de ingresar', async () => {
 Then('debería ver la pantalla principal del sistema', async () => {
   await loginPage.validarPagina();
 });
+
+When('intenta ingresar sin llenar los campos', async function () {
+  await loginPage.clicLoginbutton();
+});
+Then('debería mostrar el aviso {string}',async(mensajeError:string)=>{
+    await loginPage.validarMensajesError(mensajeError);
+});
+
